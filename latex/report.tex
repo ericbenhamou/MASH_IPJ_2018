@@ -111,7 +111,7 @@ caracteristiques	&  59,432	& 16
 \end{tabular}
 \end{table}
 
-Because an accident involves on average about two or more vehicles and about two or more person, the database usagers and vehicles have roughly twice as much rows as he one corresponding to `lieux' and `caracteristiques' that have a unique row per accident. We put in the appendix section some descriptive statistics that are easily obtained by the pythonic command describe and easily converted into latex by the command on data frame \verb|to_latex| as shown by the small python snippet code below (full details in \href{https://github.com/ericbenhamou/MASH_IPJ_2018}{github}) and provided in \ref{Descriptive statistics}
+Because an accident involves on average about two or more vehicles and about two or more person, the database usagers and vehicles have roughly twice as much rows as he one corresponding to `lieux' and `caracteristiques' that have a unique row per accident. We put in the appendix section some descriptive statistics that are easily obtained by the pythonic command describe and easily converted into latex by the command on data frame \verb|to_latex| as shown by the small python snippet code below (full details in \href{https://github.com/ericbenhamou/MASH_IPJ_2018/tree/master/code}{github/MASH\_IPJ\_2018//code}). We have provided full details of the descriptive statistics in the appendix section \ref{Descriptive statistics}
 
 \begin{lstlisting}[language=Python]
 pd.options.display.float_format = '{:,.2f}'.format
@@ -186,7 +186,7 @@ with the corresponding heat map
 \includegraphics[width=8cm]{heatmap_roads_category_circ.png}\label{heatmap_roads_category_circ}
 \captionof{figure}{heatmap per roads category and type: We can see visually that the most dangerous roads are by far the `Departementale' followed by `Communale' and the same applies for `wounded'. Because python starts at 0, the indexes are shifted by one compared to the table \ref{cross_tab2}}
 
-Again this confirms our choice that `departementale', `communale' and `nationale' with no seperated lanes should be our key objectives. So we concentrate finally on bidirectional national roads and departmental without a `separateur central' (see our oral presentation)
+Again this confirms our choice that `departementale', `communale' and `nationale' with no seperated lanes should be our key objectives. So we concentrate finally on bidirectional national roads and departmental without a `separateur central' (see our oral presentation available in \href{https://github.com/ericbenhamou/MASH_IPJ_2018/blob/master/presentation/presentation-2018-02-27.pdf}{presentation-2018-02-27.pdf} )
 
 \newpage
 
