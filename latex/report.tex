@@ -54,7 +54,7 @@
 \raggedright
 \footnotesize
 Eric Benhamou, \hfill\\   
-Marie Guerin, \hfill\\   
+Marie Garin, \hfill\\   
 Juliette Pansart, \hfill\\
 Valentin Melot  \hfill\\
 \end{minipage}
@@ -83,10 +83,10 @@ The objective of this original and fruitful course was to set up an interaction 
 \subsection{Subject}
 We offer to study the mortality on road with a particular focus on departments (which was the keyword drawn randomly for our group). The theme is very up to date with the recent announcement of the prime minister Edouard Philippe about the speed reduction from 90 to 80 km/h on two way national and departmental roads (catr 2 and 3) in the database, which are equipped wit a central separator (circ other than 3).
 
-The key findings are that these roads are actually the most dangerous according to the database of the ONISR (when looking at the criterion of danger: if you have an accident, proportion of serious or dead injuries). We try to give some hint about the impact of the measre (should it reduce mortality as much as promised). We also spent time to look at the statistics on these roads get an intuition of the causes and sources of accidents as well as possible solutions
+The key findings are that these roads are actually the most dangerous according to the database of the ONISR (when looking at the criterion of danger: if you have an accident, proportion of serious or dead injuries). We try to give some hint about the impact of the measure (should it reduce mortality as much as promised). We also spent time to look at the statistics on these roads get an intuition of the causes and sources of accidents as well as possible solutions
 
 \subsection{Description of the dataset}
-The data set about personal injury of traffic in France is split into 4 different data sets listed by years on the website of the public administration and referred to as the  \href{https://www.data.gouv.fr/fr/datasets/base-de-donnees-accidents-corporels-de-la-circulation/}{ONISIR data set} given in csv format. In addition, a pdf file is given to describe the various fields and codes used in these datasets. We investigated the data of year \textbf{2016}. Let us give briefly the characteristics:
+The data set about personal injury of traffic in France is split into 4 different data sets listed by years on the website of the public administration and referred to as the  \href{https://www.data.gouv.fr/fr/datasets/base-de-donnees-accidents-corporels-de-la-circulation/}{ONISIR data set} given in csv format. In addition, a pdf file is given to describe the various fields and codes used in these data-sets. We investigated the data of year \textbf{2016}. Let us give briefly the characteristics:
 \\
 \\
 The four sub databases are with self explained names
@@ -188,6 +188,16 @@ with the corresponding heat map
 
 Again this confirms our choice that `departementale', `communale' and `nationale' with no seperated lanes should be our key objectives. So we concentrate finally on bidirectional national roads and departmental without a `separateur central' (see our oral presentation)
 
+\newpage
+
+In terms of coding, heatmap are easily done as follows:
+
+\begin{lstlisting}[language=Python]
+res2 = pd.crosstab(  tab['grav'].values, tab['trajet'].values, rownames =['gravite'],...)
+plt.matshow( res2.values, cmap=cm.Reds, interpolation='none')
+plt.colorbar()
+plt.show()
+\end{lstlisting}
 
 %-----------------------------------------------------------------------------
 % CHI SQUARE
@@ -199,13 +209,13 @@ In this section we detail various Pearson correlation coefficient  tests done. L
 The beauty of the R Correlation independence test is the simplicity of the assumptions.The two main important assumption to pay attention to are:
 
 \subsubsection{Sample size assumption}
-One can use the chi-square test to determine differences in proportions using a two-by-two contingency table. However it is crucial to note that chi-square tests yield only an approximated p-value. A correction factor has then to be applied. This only works when the datasets are large enough. This is obviously our case. When sample sizes are small, a Fisher's exact test  should be more appropriate. A good rule of thumb is to have less than 20\% of the contingency cells wtih expected values less than 5 
-In additon, the Fisher test is an exact test as opposed to the Chi swaure test. This means that the significance of the deviation from its null hypothesis can be calculated exactly, rather than relying on an approximation
+One can use the chi-square test to determine differences in proportions using a two-by-two contingency table. However it is crucial to note that chi-square tests yield only an approximated p-value. A correction factor has then to be applied. This only works when the data-sets are large enough. This is obviously our case. When sample sizes are small, a Fisher's exact test  should be more appropriate. A good rule of thumb is to have less than 20\% of the contingency cells with expected values less than 5 
+In addition, the Fisher test is an exact test as opposed to the Chi square test. This means that the significance of the deviation from its null hypothesis can be calculated exactly, rather than relying on an approximation
 
 \subsubsection{Independence assumption}
 Secondly and more importantly, the chi-square test does not work on correlated data. For correlated data like when you are looking to test differences in proportions among matched pairs in a before/after scenario, an appropriate choice is the McNemar's test. In essence, this test is a chi-square goodness of fit test on the two discordant cells, with a null hypothesis stating that 50\% of the changes (agreements or disagreements) go in each direction. This test requires the same subjects to be included in the before and after measurements i.e. the pairs should be matched one-on-one.  
 
-We can check that these two hypothesis are valid on our dataset. We now present the test framework.
+We can check that these two hypothesis are valid on our data-set. We now present the test framework.
 
 \subsection{Test framework}
 \begin{definition}
@@ -233,7 +243,7 @@ $\operatorname{E}$ is the expectation.
 
 We have the following properties
 \begin{proposition}
-The absolute values of the sample Pearson correlation coefficients is less than or equal to 1. Correlations equal to 1 or -1 correspond to data points lying exactly on a line (in the case of the sample correlation), or to a bivariate distribution entirely supported on a line. The Pearson correlation coefficient is symmetric: 
+The absolute values of the sample Pearson correlation coefficients is less than or equal to 1. Correlations equal to 1 or -1 correspond to data points lying exactly on a line (in the case of the sample correlation), or to a bi-variate distribution entirely supported on a line. The Pearson correlation coefficient is symmetric: 
 \[ 
 \rho_{X,Y}= \rho_{Y,X}
 \]
@@ -243,7 +253,7 @@ The absolute values of the sample Pearson correlation coefficients is less than 
 A key mathematical property of the Pearson correlation coefficient is that it is invariant under separate changes in location and scale in the two variables. That is, we may transform $X$ to $ a + bX$ and transform $Y$ to $c + dY$, where $a, b, c,$ and $d$ are constants with $b, d > 0$, without changing the correlation coefficient. Note that more general linear transformations do change the correlation
 \end{proposition}
 
-A powerfull property is that this statistic can be used to test independence of two variables.\newline
+A powerful property is that this statistic can be used to test independence of two variables.\newline
 
 
 \textbf{Test hypothesis} \newline
@@ -252,7 +262,7 @@ We want to test \textbf{H0:} There is no relationship between the variables $X$ 
 
 
 \begin{proposition}
-Using a permuation test, we can compute a p-value to reject or to fail to reject H0 as follows, called permutation test in the following two steps: 
+Using a permutation test, we can compute a p-value to reject or to fail to reject H0 as follows, called permutation test in the following two steps: 
 
 \begin{enumerate}
 \item  Using the original paired data $(x_i,y_i)$, randomly redefine the pairs to create a new data set $(x_i,y_{i'})$ where the index $i'$ are a permutation of the set ${1,...,n}$.  
@@ -265,17 +275,57 @@ A closely related and equally justified bootstrapping approach is to separately 
 To perform the permutation test, repeat steps (1) and (2) a large number of times.  The p-value for the permutation test is the proportion of the $\rho_{x,y}$ values generated in step 2 that are larger than the Pearson correlation coefficient that was calculated from the original data.  Here "larger" can mean either that the value is larger in magnitude, or larger in signed value, depending on whether a two-sided or one-sided test is desired.
 \end{proposition}
 
+Chi square tests are easily done in Python thanks to the scipy library. This is written in two lines as follows
+\begin{lstlisting}[language=Python]
+import scipy.stats as scs
+chisq_test = scs.pearsonr(tab['has_tpc'].values, tab['mort_ou_grave'].values)
+correlation = chisq_test[0]
+p_value = chisq_test[1]
+print("La correlation est de {:.2f}.".format(correlation))
+print("La p-value est de {:.2e}.".format(p_value))
+\end{lstlisting}
+
+It is worth mentioning that one has to merge table in order to address data cross tables. This is done easily with pandas as follows
+\begin{lstlisting}[language=Python]
+db_combined = dfs[0]
+for i in range(3):
+    db_combined = db_combined.merge(dfs[i+1], on='Num_Acc',how='left')
+\end{lstlisting}
+
+
 \subsection{Visual representation}
 In order to graphically visualize a Chi square test, we develop an original method. We plot the contingency table as a mosaic matrix and draw on the cross the confidence intervals that confirm that the two variables are independent using a standard chi square test. This is quite original in terms of visualizing the chi square test as statisticians usually just refer to the p-value but they do not give a visual representation of the test. 
 
 To our knowledge \textbf{this is new}. 
-To illustrate this, let us look at the first test we did which was to validate or not that the presence of a `terre-plein' central saves lifes or not. We runned a Pearson correlation coefficient and retrive the corresponding p-value for testing non-correlation.
+To illustrate this, let us look at the first test we did which was to validate or not that the presence of a `terre-plein' central saves lifes or not. We ran a Pearson correlation coefficient and retrieve the corresponding p-value for testing non-correlation.
 The test is simply executed by the pythonic code  scs.pearsonr and provided a p-value of 8.85e-156 and a correlation of -11.4%
 
 \includegraphics[width=8cm]{indep_1_test.png}\label{indep_1_test}
 \captionof{figure}{original representation of the Pearson test of independence: We can see that the presence of a terre plein central is clearly not independent of the death or not within an accident as both the Yes and No categories are not within the dashed line band that indicate the range for independence}
 
-We present in appendix a collection of independence test done using both the traditionnal test test and visual test \ref{Independence_testing}
+We present in appendix a collection of independence test done using both the traditional test test and visual test \ref{Independence_testing}
+
+The full code for the visualization that we do not reproduce here for obvious reason of readability (about 100 lines of code) is located in the python jupyter notebook \verb|code/DataVisualisation.ipynb| 
+The key function is \verb|mosaic_plot| whose usage is trivial and given for instance by
+
+\begin{lstlisting}[language=Python]
+#Mosaic plot survivant vs. sexe
+ct_grav_sex = pd.crosstab(accidents_int["grav_fatal"], accidents_int["sexe_cond"])
+N = np.sum(ct_grav_sex.values)
+phat = np.sum(ct_grav_sex.values[0,:]) / N
+deltap = scs.norm.ppf(.975) * np.sqrt(phat * (1-phat) / N)
+mosaic_plot(ct_grav_sex, {False: "darkgrey", True: "black"}, figsize=(10,10), pad_x=.01, pad_y=0,
+            x_label="Sexe du conducteur", y_label="Mort ou gravement blesse",
+            row_labels=["non", "oui"],
+            col_labels=["homme", "femme"],
+            top_label="Nombre de personnes impliquees",
+            lines=[(phat+deltap, "w--", {"linewidth": 2}),
+                   (phat-deltap, "w--", {"linewidth": 2})])
+\end{lstlisting}
+
+
+
+
 
 
 %-----------------------------------------------------------------------------
@@ -361,6 +411,20 @@ x3     1.4484      0.2580     5.6145    0.0000     0.9428     1.9540
 \end{verbatim}
 
 
+The corresponding python code for running a logistic regression is like for the Chi square test trivial and consists on a few lines as follows
+
+\begin{lstlisting}[language=Python]
+import statsmodels.api as sm
+import scipy 
+import numpy as np
+
+y=tab['mort_ou_grave']
+tab['moto'] = np.logical_and( tab['catv'] <= 34, tab['catv'] >= 30 )
+X=np.column_stack( (tab['glissiere'].values, tab['moto'].values,  tab['moto'].values * tab['glissiere'].values) )
+logit_model = sm.Logit(y,X)
+result = logit_model.fit()
+print(result.summary2())
+\end{lstlisting}
 
 %-----------------------------------------------------------------------------
 % KEY FINDINGS
@@ -375,7 +439,11 @@ x3     1.4484      0.2580     5.6145    0.0000     0.9428     1.9540
 \item last but not least, `glissiere' saves life but are dangerous for bikers.
 \end{itemize}
 
+\section{Conclusion}
+This three session about data journalism have been exciting. Through the constant interaction with journalist students, we have been able to better understand the issue of communication between the scientists and journalists. This becomes very powerful and enables us exploiting scientific know-how in a more literary approach than usual. This non-standard course is a good experience and complement to more theoretical or scientific courses of the MASH. We strongly recommend it.
+Last but not least, this report gave us the opportunity to asses that we correctly understood the underlying assumptions and limitations between usual statistical tests.
 
+\newpage
 \section{appendix}
 
 \subsection{Descriptive statistics} \label{Descriptive statistics}
