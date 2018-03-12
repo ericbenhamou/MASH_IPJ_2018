@@ -81,7 +81,7 @@ Robin Ryder
 The objective of this original and fruitful course was to set up an interaction between mathematics and journalists students in collaboration with the Institut Pratique du Journalisme. After being presented the problematic of Safety on roads, with a key focus on departmental road, we formed a group of 6 people (the 4 of us and 2 students from M2 IPJ: Cloe Ant and Antoine Cadaux) to analyze data from the \href{https://www.data.gouv.fr/fr/datasets/base-de-donnees-accidents-corporels-de-la-circulation/}{ONISIR data set}. We were asked to collaborate to find a journalistic problematic and illustrate the point of view with our statistical skills, in a traditional data journalism course. The overall idea was to study the data, find a problematic, propose and validate relevant models, perform mathematical analysis, choose an angle, develop some data visualizations. The journalist students were asked to write a report accessible to the general public in the form of a press article, while we were asked to write a more scientific one exposing our approach. We had 3 meeting together at the IPJ (Jan 16th, Feb 6th, and 27th). We summarize below our approach and findings and took the initiative to illustrate our point of view with relevant python code section and graphics. Full code is available at \href{https://github.com/ericbenhamou/MASH_IPJ_2018}{github}
 
 \subsection{Subject}
-We offer to study the mortality on road with a particular focus on departments (which was the keyword drawn randomly for our group). The theme is very up to date with the recent announcement of the prime minister Edouard Philippe about the speed reduction from 90 to 80 km/h on two way national and departmental roads (catr 2 and 3) in the database, which are equipped wit a central separator (circ other than 3).
+The variable drawn for our group was ``catr``, the category of the road. We offer to study the mortality on road with a particular focus on suburban roads excluding lane-separated highways (referred as ''routes départementales et nationales à double-sens de circulation``). The theme is very up to date with the recent announcement of the prime minister Edouard Philippe about the speed reduction from 90 to 80 km/h on two way national and departmental roads (catr 2 and 3) in the database, which are equipped wit a central separator (circ other than 3).
 
 The key findings are that these roads are actually the most dangerous according to the database of the ONISR (when looking at the criterion of danger: if you have an accident, proportion of serious or dead injuries). We try to give some hint about the impact of the measure (should it reduce mortality as much as promised). We also spent time to look at the statistics on these roads get an intuition of the causes and sources of accidents as well as possible solutions
 
@@ -431,12 +431,12 @@ print(result.summary2())
 %-----------------------------------------------------------------------------
 \section{Key findings}
 \begin{itemize}
-\item departmentale, communale and national roads without `terre plein centrale' are the most dangerous ones.
-\item the presence of a terre plein central saves life
-\item the type of roads matters. Departementale are the most dangerous.
+\item departmentale, communale and national roads without lane separators are the most dangerous ones.
+\item the presence of a lanes separator does save lifes
+\item the type of roads matters. Départementales are the most dangerous.
 \item we can draw the profile of the typical driver that kills on roads. The driver is a young or senior (more than 65 year old). It is mostly a male
-\item we can also infer the type of situations that are dangerous: tree on the sides 
-\item last but not least, `glissiere' saves life but are dangerous for bikers.
+\item we can also infer that trees on the side of roads are dangerous for all road users.
+\item last but not least, crash barriers saves lifes for car passengers but are dangerous for bikers and motorcyclists.
 \end{itemize}
 
 \section{Conclusion}
@@ -551,7 +551,7 @@ max   & 5,106,528.00 & 6,156,877.00 &    976.00 \\
 Below are the collection of questions hat were answered by independence testing. All these tests are done on the sub data set limited to departmental roads without separated lanes and bidirectional roads. This represents on our total data set 400 000 km of roads and about 68\% of the death in 2016. 68\% of the roads is meaningful enough to draw some valid conclusions.
 
 
-\subsubsection{does the sex of the driver influence the accident?}
+\subsubsection{does the gender of the driver influence the accident?}
 
 \begin{tabular}{lrr}
 \toprule
@@ -564,10 +564,10 @@ grav &           &           \\
 4    &  0.259960 &  0.301933 \\
 \bottomrule
 \end{tabular}
-\captionof{table}{Impact of sex driver on the accident }
+\captionof{table}{Impact of driver’s gender on the accident }
 
 \includegraphics[width=8cm]{colorbar_sex_accident.png}\label{test_sex_accident}
-\captionof{figure}{graphical representation of the impact of the sex driver on the accident}
+\captionof{figure}{graphical representation of the impact of the driver’s gender on the accident}
 
 We then run for various independene tests as follows
 \begin{verbatim}
