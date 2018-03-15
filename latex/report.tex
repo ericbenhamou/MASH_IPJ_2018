@@ -132,7 +132,7 @@ in 2016, the main points to note are:
 Since we had to work on the specific subject of departmental roads, we started narrowing our data set. We plot first an histogram of the type of rods that are dangerous. 
 
 \includegraphics[width=8cm]{histo_roads_category.png}
-\captionof{figure}{Accident per roads category: this histogram shows that accidents are mostly arriving on roads of category 3 and 4 which are `departementale' and `Voie Communale' roads, totaling about 85\% of accidents }
+\captionof{figure}{Accident per roads category: this histogram shows that accidents are mostly arriving on roads of category 3 and 4 which are deparmental roads (`departementale') and communal way (`Voie Communale'), totaling about 85\% of accidents }
 \vspace{0.5cm}
 
 We can also look at a cross table to get a more detailed feeling of the re-partition of type of accidents per roads categories whcih is provided below
@@ -156,11 +156,11 @@ while the ones for the type of accidents are 1: 'indemne', 2: 'tue', 3: 'blesse'
 More visually, we can do a heat map as follows
 
 \includegraphics[width=8cm]{heatmap_roads_category_accident.png}\label{heatmap_roads_category_accident}
-\captionof{figure}{heatmap per roads category and type: We can see visually that the most dangerous roads are by far the `Departementale' followed by `Communale' and the same applies for `wounded'. Because python starts at 0, the indexes correspond to the following: '0': 'Autoroute', '1': 'Nationale', '2': 'Départementale', '3': 'Voie Communale', '4': 'Hors réseau public', '5': 'Parc de stationnement', '6': 'Autre'
+\captionof{figure}{heatmap per roads category and type: We can see visually that the most dangerous roads are by far the departmental road (`Departementale') followed by communal way (`Voie Communale') and the same applies for `wounded'. Because python starts at 0, the indexes correspond to the following: '0': 'Autoroute', '1': 'Nationale', '2': 'Départementale', '3': 'Voie Communale', '4': 'Hors réseau public', '5': 'Parc de stationnement', '6': 'Autre'
 while the ones for the type of accidents are 0: 'indemne', 1: 'tue', 2: 'blesse', 3: 'blesse leger'}
 \vspace{0.5cm}
 
-in \ref{heatmap_roads_category_accident}, we see that  the two darkest columns are the one related to `'Départementale' and  'Voie Communale'. They represent 63\%, 17\% of death and 50\% and 34\% of wounded (see row 2 and 3 of table \ref{cross_tab1})
+in \ref{heatmap_roads_category_accident}, we see that  the two darkest columns are the one related to deparmental roads (`departementale') and communal way (`Voie Communale'). They represent 63\%, 17\% of death and 50\% and 34\% of wounded (see row 2 and 3 of table \ref{cross_tab1})
 
 We also look at the presence or not of a `separateur central' as this makes the distinction between `national' with two separated lanes or not. We again use heat map and cross tab to build an intuition.
 \begin{tabular}{lrrrrr}
@@ -184,7 +184,7 @@ with the corresponding heat map
 
 
 \includegraphics[width=8cm]{heatmap_roads_category_circ.png}\label{heatmap_roads_category_circ}
-\captionof{figure}{heatmap per roads category and type: We can see visually that the most dangerous roads are by far the `Departementale' followed by `Communale' and the same applies for `wounded'. Because python starts at 0, the indexes are shifted by one compared to the table \ref{cross_tab2}}
+\captionof{figure}{heatmap per roads category and type: We can see visually that the most dangerous roads are by far the deparmental roads (`departementale') and communal way (`Voie Communale') and the same applies for `wounded'. Because python starts at 0, the indexes are shifted by one compared to the table \ref{cross_tab2}}
 
 Again this confirms our choice that `departementale', `communale' and `nationale' with no seperated lanes should be our key objectives. So we concentrate finally on bidirectional national roads and departmental without a `separateur central' (see our oral presentation available in \href{https://github.com/ericbenhamou/MASH_IPJ_2018/blob/master/presentation/presentation-2018-02-27.pdf}{presentation-2018-02-27.pdf} )
 
@@ -205,7 +205,7 @@ plt.show()
 \section{Chi square tests}
 In this section we detail various Pearson correlation coefficient  tests done. Let us recall the assumptions of this test
 
-\subsection{Assumtions}
+\subsection{Assumptions}
 The beauty of the R Correlation independence test is the simplicity of the assumptions.The two main important assumption to pay attention to are:
 
 \subsubsection{Sample size assumption}
@@ -385,7 +385,7 @@ The coefficient terms $a$ and $B$ are estimated via maximum likelihood. Practica
 
 
 \subsection{Illustration}
-We run a test to do a logistic regression on bikers and `glissieres'. Since the coefficient for $X1$ is negative, it indicates that `glissieres' saves life but the coefficient for $X2$ and $X3$ e
+We run a test to do a logistic regression on bikers and crash barriers (`glissieres'). Since the coefficient for $X1$ is negative, it indicates that crash barriers saves life but the coefficient for $X2$ and $X3$ e
 \begin{verbatim}
 Optimization terminated successfully.
          Current function value: 0.688725
@@ -431,7 +431,7 @@ print(result.summary2())
 %-----------------------------------------------------------------------------
 \section{Key findings}
 \begin{itemize}
-\item departmentale, communale and national roads without lane separators are the most dangerous ones.
+\item departmental, communal and national roads without lane separators are the most dangerous ones.
 \item the presence of a lanes separator does save lifes
 \item the type of roads matters. Départementales are the most dangerous.
 \item we can draw the profile of the typical driver that kills on roads. The driver is a young or senior (more than 65 year old). It is mostly a male
